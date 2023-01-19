@@ -28,4 +28,6 @@
 
 > Rechazado ![Img Rechazado](https://firebasestorage.googleapis.com/v0/b/volada-fire-edd42.appspot.com/o/correos%2Fcircle-xmark-solid.svg?alt=media&token=97628e8b-18c6-4abb-8697-22164d74dcd8 "Rechazado img")
 
-> Image ![Default Image](https://firebasestorage.googleapis.com/v0/b/volada-fire-edd42.appspot.com/o/correos%2Fimage.png?alt=media&token=4eb89a2c-b3ca-4ad4-aeb4-9d7461dc20af "Image default")
+> Image Vertical ![Default ImageVertical](https://firebasestorage.googleapis.com/v0/b/volada-fire-edd42.appspot.com/o/correos%2Fimage.png?alt=media&token=4eb89a2c-b3ca-4ad4-aeb4-9d7461dc20af "ImageVertical default")
+
+> Image Horizontal ![Default ImageHorizontal](https://firebasestorage.googleapis.com/v0/b/volada-fire-edd42.appspot.com/o/correos%2Fimage-horizontal.png?alt=media&token=3eb9e42c-dc43-408c-b491-568f7d62c87e "Image default")
