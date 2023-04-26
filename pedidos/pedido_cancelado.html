@@ -105,6 +105,20 @@
         hr.solid {
             border-top: 0.5px solid #bbb;
         }
+
+        li::marker {
+            color: #e67e20;
+            /* content: url("/image/check-green.png"); */
+        }
+
+        .filter-grey {
+            filter: invert(25%) sepia(11%) saturate(381%) hue-rotate(173deg) brightness(98%) contrast(95%);
+        }
+
+        ul {
+            margin-top: 0px;
+            padding-left: 20px;
+        }
     </style>
 
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet" type="text/css">
@@ -201,7 +215,7 @@
                                                                         </p>
                                                                         <p style="font-size: 20px; color: #1c2b5e;">
                                                                             <b>
-                                                                                PRID25022-8DW4
+                                                                                {{folio}}
                                                                             </b>
                                                                         </p>
 
@@ -239,6 +253,7 @@
                                         <div
                                             style="height: 100%; padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;">
 
+                                            <!-- DETALLES DEL PEDIDO -->
                                             <table style="font-family:'Lato',sans-serif;" role="presentation"
                                                 cellpadding="0" cellspacing="0" width="100%" border="0">
                                                 <tbody>
@@ -248,6 +263,7 @@
 
                                                             <div
                                                                 style="line-height: 140%; text-align: left; word-wrap: break-word;">
+                                                                <!-- Detalles del pedido -->
                                                                 <p style="font-size: 14px; line-height: 140%;"><span
                                                                         style="color: #1c2b5e; font-size: 14px; line-height: 19.6px;">
                                                                         <strong>
@@ -261,14 +277,16 @@
                                                                 <p style="font-size: 14px; line-height: 140%;"> </p>
 
                                                                 <p style="font-size: 14px;line-height: 140%;">
+                                                                    <!-- Establecimiento -->
                                                                     <span
                                                                         style="font-size: 18px; line-height: 0px; color: #303133; font-family: Lato, sans-serif;">
                                                                         <b>Establecimiento</b>
                                                                     </span>
                                                                     <br>
+                                                                    <!-- Nombre del establecimiento -->
                                                                     <span
                                                                         style="font-size: 16px; line-height: 0px; color: #303133; font-family: Lato, sans-serif;">
-                                                                        Tortilandia
+                                                                        {{establecimiento.nombre}}
                                                                     </span>
                                                                 </p>
 
@@ -278,7 +296,9 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
+                                            <!-- END DETALLES DEL PEDIDO -->
 
+                                            <!-- DETALLES DEL PRODICTO -->
                                             <table style="font-family:'Lato',sans-serif;" role="presentation"
                                                 cellpadding="0" cellspacing="0" width="100%" border="0">
                                                 <tbody>
@@ -291,36 +311,185 @@
 
 
                                                                 <p style="font-size: 14px;line-height: 140%;">
+                                                                    <!-- Carrito -->
                                                                     <span
                                                                         style="font-size: 18px; line-height: 0px; color: #303133; font-family: Lato, sans-serif;">
                                                                         <b>Carrito</b>
                                                                     </span>
                                                                     <br>
+
+                                                                    <!-- Linea separadora -->
                                                                     <hr class="solid">
                                                                 </p>
 
+                                                                <!-- Detalles del carrito -->
                                                                 <table style="width: 100%;">
                                                                     <tr>
-                                                                        <td style="width: 10%;">x1</td>
-                                                                        <td style="width: 70%;">Milanesa de pollo</td>
-                                                                        <td style="width: 20%; text-align: end;">$99.00
+                                                                        <!-- Cantidad de productos -->
+                                                                        <td style="width: 10%;">
+                                                                            <span
+                                                                                style="font-size: 18px;">x{{detalleCarrito[i].cantidad}}</span>
+                                                                        </td>
+                                                                        <td style="width: 70%;">
+                                                                            <!-- Nombre del producto -->
+                                                                            <span style="font-size: 18px;">
+                                                                                {{nombreProducto}}
+                                                                            </span>
+                                                                            <br>
+                                                                            <b
+                                                                                style="color: #303133; font-size: 14px;">Configuraciones</b>
+                                                                            <!-- Lista de configuraciones -->
+
+                                                                            <div>
+                                                                                <b
+                                                                                    style="color: #303133; font-size: 14px;">{{detalleCarrito[i].configuraciones[j].nombre}}</b>
+                                                                            </div>
+                                                                            <ul>
+                                                                                <li><span
+                                                                                        style="color: #303133; font-size: 16px; line-height: 25.2px;">
+                                                                                        {{detalleCarrito[i].configuraciones[j].opcion[k].nombre}}
+                                                                                    </span>
+                                                                                </li>
+                                                                            </ul>
+
+                                                                            <!-- Comentarios -->
+                                                                            <b
+                                                                                style="color: #303133; font-size: 14px;">Comentarios</b>
+
+                                                                            <div>
+                                                                                <li><span
+                                                                                        style="color: #303133; font-size: 16px; line-height: 25.2px;">
+                                                                                        {{detalleCarrito[i].comentarios}}
+                                                                                    </span>
+                                                                                </li>
+                                                                            </div>
+
+                                                                        </td>
+                                                                        <td style="width: 20%; text-align: end;">
+                                                                            <span style="font-size: 18px;">
+                                                                                ${{detalleCarrito[i].precioUnitario}}
+                                                                            </span>
+                                                                        </td>
+                                                                    </tr>
+
+                                                                </table>
+
+                                                                <hr class="solid">
+
+                                                                <br>
+
+                                                                <p style="font-size: 14px;line-height: 140%;">
+
+                                                                    <span
+                                                                        style="font-size: 18px; line-height: 0px; color: #303133; font-family: Lato, sans-serif;">
+                                                                        <b>Comentarios</b>
+                                                                    </span>
+                                                                    <br>
+                                                                    <br>
+                                                                    <!-- Comentarios -->
+                                                                    <span style="font-size: 18px;">
+                                                                        {{comentarios}}
+                                                                    </span>
+                                                                </p>
+
+                                                            </div>
+
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <!-- END DETALLES DEL PEDIDO -->
+
+                                            <!-- DESGLOSE DE LOS PRECIOS -->
+                                            <table style="font-family:'Lato',sans-serif;" role="presentation"
+                                                cellpadding="0" cellspacing="0" width="100%" border="0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td style="overflow-wrap:break-word;word-break:break-word;padding:20px 40px 30px;font-family:'Lato',sans-serif;"
+                                                            align="left">
+
+                                                            <div
+                                                                style="line-height: 140%; text-align: left; word-wrap: break-word;">
+
+                                                                <p style="font-size: 14px; line-height: 140%;"><span
+                                                                        style="color: #1c2b5e; font-size: 14px; line-height: 19.6px;">
+                                                                        <strong>
+                                                                            <span
+                                                                                style="font-size: 20px; line-height: 28px; font-family: Lato, sans-serif;">
+                                                                                Total
+                                                                            </span>
+                                                                        </strong>
+                                                                    </span>
+                                                                </p>
+
+                                                                <br>
+
+                                                                <table style="width: 100%;">
+                                                                    <tr>
+                                                                        <td style="width: 80%;">
+                                                                            <!-- Total de productos -->
+                                                                            <span style="font-size: 18px;">
+                                                                                Productos
+                                                                            </span>
+                                                                        </td>
+                                                                        <td style="text-align: end;">
+                                                                            <!-- Precio total de productos -->
+                                                                            <span style="font-size: 18px;">
+                                                                                ${{totalCarrito}}
+                                                                            </span>
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <td style="width: 10%;">x1</td>
-                                                                        <td style="width: 70%;">Milanesa de pollo</td>
-                                                                        <td style="width: 20%; text-align: end;">$99.00
+                                                                        <td style="width: 80%;">
+                                                                            <!-- Ingredientes o complementos extra -->
+                                                                            <span style="font-size: 18px;">
+                                                                                Ingredientes o complementos extra
+                                                                            </span>
+                                                                        </td>
+                                                                        <td style="text-align: end;">
+                                                                            <!-- Precio total de ingredientes o complementos extra -->
+                                                                            <span style="font-size: 18px;">
+                                                                                $25.00
+                                                                            </span>
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <td style="width: 10%;">x1</td>
-                                                                        <td style="width: 70%;">Milanesa de pollo</td>
-                                                                        <td style="width: 20%; text-align: end;">$99.00
+                                                                        <td style="width: 80%;">
+                                                                            <!-- Envío -->
+                                                                            <span style="font-size: 18px;">
+                                                                                Envío
+                                                                            </span>
+                                                                        </td>
+                                                                        <td style="text-align: end;">
+                                                                            <!-- Total de Envío -->
+                                                                            <span style="font-size: 18px;">
+                                                                                ${{precioEnvio}}
+                                                                            </span>
                                                                         </td>
                                                                     </tr>
                                                                 </table>
 
+                                                                <!-- Linea separadora -->
+                                                                <hr class="solid">
 
+                                                                <!--Total a pagar -->
+                                                                <table style="width: 100%;">
+                                                                    <tr>
+                                                                        <td style="width: 80%;">
+                                                                            <!-- Total a pagar -->
+                                                                            <b style="font-size: 20px;">
+                                                                                Total a pagar
+                                                                            </b>
+                                                                        </td>
+                                                                        <td style="text-align: end;">
+                                                                            <!-- Precio total a pagar -->
+                                                                            <b style="font-size: 18px;">
+                                                                                ${{total}}
+                                                                            </b>
+                                                                        </td>
+                                                                    </tr>
+
+                                                                </table>
 
                                                             </div>
 
@@ -328,79 +497,159 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
+                                            <!-- END DESGLOSE DE LOS PRECIOS -->
 
+                                            <!-- DETALLES DEL ENVÍO -->
                                             <table style="font-family:'Lato',sans-serif;" role="presentation"
                                                 cellpadding="0" cellspacing="0" width="100%" border="0">
                                                 <tbody>
                                                     <tr>
-                                                        <td style="overflow-wrap:break-word;word-break:break-word;padding:40px 40px 30px;font-family:'Lato',sans-serif;"
+                                                        <td style="overflow-wrap:break-word;word-break:break-word;padding:20px 40px 30px;font-family:'Lato',sans-serif;"
                                                             align="left">
 
                                                             <div
                                                                 style="line-height: 140%; text-align: left; word-wrap: break-word;">
-                                                                <p style="font-size: 14px; line-height: 140%;">
-                                                                    <br /><span
-                                                                        style="color: #888888; font-size: 14px; line-height: 19.6px;"><em><span
-                                                                                style="font-size: 16px; line-height: 22.4px;"> </span></em></span>
-                                                                    <hr class="solid">
-                                                                </p>
-                                                            </div>
 
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-
-                                            <!-- Botón para cambiar contraseña -->
-                                            <table style="font-family:'Lato',sans-serif;" role="presentation"
-                                                cellpadding="0" cellspacing="0" width="100%" border="0">
-                                                <tbody>
-                                                    <tr>
-                                                        <td style="overflow-wrap:break-word;word-break:break-word;padding:0px 40px;font-family:'Lato',sans-serif;"
-                                                            align="left">
-
-                                                            <div align="center">
-
-                                                                <a href="%LINK%" target="_blank"
-                                                                    style="box-sizing: border-box;display: inline-block;font-family:'Lato',sans-serif;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #FFFFFF; background-color: #e67e20; border-radius: 5px;-webkit-border-radius: 5px; -moz-border-radius: 5px; width:auto; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; ">
-                                                                    <span
-                                                                        style="display:block;padding:15px 40px;line-height:120%;">
-                                                                        <p style="font-size: 14px; line-height: 120%;">
+                                                                <p style="font-size: 14px; line-height: 140%;"><span
+                                                                        style="color: #1c2b5e; font-size: 14px; line-height: 19.6px;">
+                                                                        <strong>
                                                                             <span
-                                                                                style="font-size: 18px; line-height: 21.6px;">Cambia
-                                                                                tu contraseña</span>
-                                                                        </p>
+                                                                                style="font-size: 20px; line-height: 28px; font-family: Lato, sans-serif;">
+                                                                                Detalles del envío
+                                                                            </span>
+                                                                        </strong>
                                                                     </span>
-                                                                </a>
-
-                                                            </div>
-
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            <!-- END Botón para cambiar contraseña -->
-
-                                            <table style="font-family:'Lato',sans-serif;" role="presentation"
-                                                cellpadding="0" cellspacing="0" width="100%" border="0">
-                                                <tbody>
-                                                    <tr>
-                                                        <td style="overflow-wrap:break-word;word-break:break-word;padding:40px 40px 30px;font-family:'Lato',sans-serif;"
-                                                            align="left">
-
-                                                            <div
-                                                                style="line-height: 140%; text-align: left; word-wrap: break-word;">
-                                                                <p style="font-size: 14px; line-height: 140%;">
-                                                                    <br /><span
-                                                                        style="color: #888888; font-size: 14px; line-height: 19.6px;"><em><span
-                                                                                style="font-size: 16px; line-height: 22.4px;"> </span></em></span>
                                                                 </p>
+
+                                                                <br>
+
+                                                                <!-- Detalles del Repartidor -->
+                                                                <table style="width: 100%;">
+                                                                    <tr>
+                                                                        <th style="width: 70%;">
+                                                                            Repartidor
+                                                                        </th>
+                                                                        <th style="text-align: start;">
+                                                                            Precio de envío
+                                                                        </th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <!-- Nombre del repartidor -->
+                                                                            <span style="font-size: 18px;">
+                                                                                {{repartidor.name}}{{repartidor.lastName}}
+                                                                            </span>
+                                                                        </td>
+                                                                        <td>
+                                                                            <!-- Precio envío -->
+                                                                            <span style="font-size: 18px;">
+                                                                                ${{precioEnvio}}
+                                                                            </span>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                                <!-- END Detalles del Repartidor -->
+
+                                                                <br>
+
+                                                                <!-- Detalles del Pedido (HORAS, FECHAS) -->
+                                                                <table style="width: 100%;">
+                                                                    <tr>
+                                                                        <th>
+                                                                            Fecha de operación
+                                                                        </th>
+                                                                        <th style="text-align: start;">
+                                                                            Hora de recolección
+                                                                        </th>
+                                                                        <th style="text-align: start;">
+                                                                            Hora de entrega
+                                                                        </th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <!-- Fecha de operación -->
+                                                                            <span style="font-size: 18px;">
+                                                                                {{timestamp}}
+                                                                            </span>
+                                                                        </td>
+                                                                        <td>
+                                                                            <!-- Hora de recolección -->
+                                                                            <span style="font-size: 18px;">
+                                                                                {{estatusList.estatus == 'Tomado por
+                                                                                repartidor'}}
+                                                                            </span>
+                                                                        </td>
+                                                                        <td>
+                                                                            <!-- Hora de entrega -->
+                                                                            <span style="font-size: 18px;">
+                                                                                {{timestampEstatus}}
+                                                                            </span>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                                <!-- END Detalles del Pedido (HORAS, FECHAS) -->
+
+                                                                <br>
+
+                                                                <!-- Detalles del Pedido (Dirección de entrega) -->
+                                                                <table style="width: 100%;">
+                                                                    <tr>
+                                                                        <th>
+                                                                            Dirección de envío
+                                                                        </th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <!-- Fecha de operación -->
+                                                                            <span style="font-size: 18px;">
+                                                                                {{cliente.direccion}}
+                                                                            </span>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                                <!-- END Detalles del Pedido (Dirección de entrega) -->
+
+                                                                <br>
+
+                                                                <!-- Detalles del Pedido (Referencias) -->
+                                                                <table style="width: 100%;">
+                                                                    <tr>
+                                                                        <th>
+                                                                            Referencia:
+                                                                        </th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <!-- Fecha de operación -->
+                                                                            <span style="font-size: 18px;">
+                                                                                {{NO EN BD}}
+                                                                            </span>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                                <!-- END Detalles del Pedido (Referencias) -->
+
+                                                                <br><br>
+
+                                                                <center>
+                                                                    <span style="text-align: center; font-size: 14px;">
+                                                                        El comprobante de la transacción y/o comprobante
+                                                                        fiscal se enviará a la dirección de correo
+                                                                        proporcionada al momento de la creación de su
+                                                                        cuenta
+                                                                        de Perfíl.
+                                                                    </span>
+                                                                </center>
+
                                                             </div>
 
                                                         </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
+                                            <!-- END DETALLES DEL ENVÍO -->
+
+
 
                                         </div>
 
@@ -412,230 +661,154 @@
                     </div>
                     <!-- END CUERPO DEL MENSAJE -->
 
-                    <!-- ROW 1, Email Volada, Número Volada -->
+
                     <div class="u-row-container" style="padding: 0px;background-color: transparent">
                         <div class="u-row"
-                            style="Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;">
+                            style="Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #ffffff;">
                             <div
                                 style="border-collapse: collapse;display: table;width: 100%;height: 100%;background-color: transparent;">
 
-                                <!-- EMAIL -->
-                                <div class="u-col u-col-50"
-                                    style="max-width: 320px;min-width: 300px;display: table-cell;vertical-align: top;">
-                                    <div
-                                        style="background-color: #3e4349;height: 100%;width: 100% !important;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;">
+                                <div class="u-col u-col-100"
+                                    style="max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;">
+                                    <div style="height: 100%;width: 100% !important;">
 
                                         <div
-                                            style="height: 100%; padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;">
+                                            style="height: 100%; padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;">
 
                                             <table style="font-family:'Lato',sans-serif;" role="presentation"
                                                 cellpadding="0" cellspacing="0" width="100%" border="0">
                                                 <tbody>
                                                     <tr>
-                                                        <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:'Lato',sans-serif;"
+                                                        <td style="overflow-wrap:break-word;word-break:break-word;padding:0px 40px 0px;font-family:'Lato',sans-serif;"
                                                             align="left">
+                                                            <div
+                                                                style="line-height: 140%; text-align: left; word-wrap: break-word;">
 
-                                                            <div class="menu" style="text-align:center">
+                                                                <center>
+                                                                    <p
+                                                                        style="font-size: 14px; line-height: 140%; padding-bottom: 5px;">
+                                                                        <span
+                                                                            style="font-size: 14px; line-height: 19.6px;">
+                                                                            <strong>
+                                                                                <span
+                                                                                    style="color: #3e4349; font-size: 16px; line-height: 28px; font-family: Lato, sans-serif;">
+                                                                                    Para dudas y aclaraciones
+                                                                                </span>
+                                                                            </strong>
+                                                                        </span>
+                                                                    </p>
+                                                                </center>
 
-                                                                <img class="filter-white"
-                                                                    src="https://firebasestorage.googleapis.com/v0/b/volada-fire-edd42.appspot.com/o/correos%2Fphone-solid.svg?alt=media&token=1fe4e571-e2cc-423e-b22e-92b1d57b64a6"
-                                                                    width="12" height="12" alt="" title="">
 
-                                                                <a
-                                                                    style="padding:5px 15px; display:inline-block; color:#ffffff; font-family:arial,helvetica,sans-serif; font-size:14px; text-decoration:none;">
-                                                                    hola@grupovolada.com.mx
-                                                                </a>
+                                                                <!-- EMAIL y TELEFONO -->
+                                                                <table style="width: 100%;">
+                                                                    <tr>
+                                                                        <td>
+                                                                            <!-- Email -->
+                                                                            <div class="menu" style="text-align:center">
+                                                                                <img class="filter-grey"
+                                                                                    src="https://firebasestorage.googleapis.com/v0/b/volada-fire-edd42.appspot.com/o/correos%2Fenvelope-solid.svg?alt=media&token=612da9d8-b282-4579-9c47-d380384c7943"
+                                                                                    width="12" height="12" alt=""
+                                                                                    title="">
+
+                                                                                <a
+                                                                                    style="padding:5px 15px; display:inline-block; color:#3e4349; font-family:arial,helvetica,sans-serif; font-size:14px; text-decoration:none;">
+                                                                                    hola@grupovolada.com.mx
+                                                                                </a>
+
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <!-- Telefono -->
+                                                                            <div class="menu" style="text-align:center">
+                                                                                <img class="filter-grey"
+                                                                                    src="https://firebasestorage.googleapis.com/v0/b/volada-fire-edd42.appspot.com/o/correos%2Fphone-solid.svg?alt=media&token=1fe4e571-e2cc-423e-b22e-92b1d57b64a6"
+                                                                                    width="12" height="12" alt=""
+                                                                                    title="">
+
+                                                                                <span
+                                                                                    style="padding:5px 15px;display:inline-block;color:#3e4349;font-family:arial,helvetica,sans-serif;font-size:14px">
+                                                                                    999 123 4567
+                                                                                </span>
+                                                                            </div>
+
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                                <!-- END EMAIL y TELEFONO -->
+
+                                                                <!-- Facebook, Twitter, Instagram -->
+                                                                <table style="width: 100%;">
+                                                                    <tr>
+                                                                        <td>
+                                                                            <!-- Facebook -->
+                                                                            <div class="menu" style="text-align:center">
+                                                                                <img class="filter-grey"
+                                                                                    src="https://firebasestorage.googleapis.com/v0/b/volada-fire-edd42.appspot.com/o/correos%2Ffacebook-f.svg?alt=media&token=cdce4ecc-105d-4246-9071-97d35164b7e9"
+                                                                                    width="12" height="12" alt=""
+                                                                                    title="">
+
+                                                                                <a
+                                                                                    style="padding:5px 15px; display:inline-block; color:#3e4349; font-family:arial,helvetica,sans-serif; font-size:14px; text-decoration:none;">
+                                                                                    Grupo Volada
+                                                                                </a>
+
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <!-- Twitter -->
+                                                                            <div class="menu" style="text-align:center">
+                                                                                <img class="filter-grey"
+                                                                                    src="https://firebasestorage.googleapis.com/v0/b/volada-fire-edd42.appspot.com/o/correos%2Ftwitter.svg?alt=media&token=5ccab4cd-bb2c-43d0-abb3-2b401389ff54"
+                                                                                    width="12" height="12" alt=""
+                                                                                    title="">
+
+                                                                                <a
+                                                                                    style="padding:5px 15px; display:inline-block; color:#3e4349; font-family:arial,helvetica,sans-serif; font-size:14px; text-decoration:none;">
+                                                                                    Grupo Volada
+                                                                                </a>
+
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <!-- Instagram -->
+                                                                            <div class="menu" style="text-align:center">
+                                                                                <img class="filter-grey"
+                                                                                    src="https://firebasestorage.googleapis.com/v0/b/volada-fire-edd42.appspot.com/o/correos%2Finstagram.svg?alt=media&token=d41806e7-9e10-43d3-ba5b-0881405d9ffa"
+                                                                                    width="12" height="12" alt=""
+                                                                                    title="">
+
+                                                                                <a
+                                                                                    style="padding:5px 15px; display:inline-block; color:#3e4349; font-family:arial,helvetica,sans-serif; font-size:14px; text-decoration:none;">
+                                                                                    Grupo Volada
+                                                                                </a>
+
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                                <!-- END Facebook, Twitter, Instagram -->
 
                                                             </div>
-
                                                         </td>
                                                     </tr>
                                                 </tbody>
+
+
                                             </table>
+
+
 
                                         </div>
 
-                                    </div>
-                                </div>
-                                <!-- END EMAIL -->
-
-                                <!-- TELÉFONO -->
-                                <div class="u-col u-col-50"
-                                    style="max-width: 320px;min-width: 300px;display: table-cell;vertical-align: top;">
-                                    <div
-                                        style="background-color: #3e4349;height: 100%;width: 100% !important;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;">
-
-                                        <div
-                                            style="height: 100%; padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;">
-
-                                            <table style="font-family:'Lato',sans-serif;" role="presentation"
-                                                cellpadding="0" cellspacing="0" width="100%" border="0">
-                                                <tbody>
-                                                    <tr>
-                                                        <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:'Lato',sans-serif;"
-                                                            align="left">
-
-                                                            <div class="menu" style="text-align:center">
-
-                                                                <img class="filter-white"
-                                                                    src="https://firebasestorage.googleapis.com/v0/b/volada-fire-edd42.appspot.com/o/correos%2Fenvelope-solid.svg?alt=media&token=612da9d8-b282-4579-9c47-d380384c7943"
-                                                                    width="12" height="12" alt="" title="">
-
-                                                                <span
-                                                                    style="padding:5px 15px;display:inline-block;color:#ffffff;font-family:arial,helvetica,sans-serif;font-size:14px">
-                                                                    999 123 4567
-                                                                </span>
-
-                                                            </div>
-
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-
-                                        </div>
 
                                     </div>
                                 </div>
-                                <!-- END TELÉFONO -->
-
                             </div>
                         </div>
                     </div>
-                    <!-- END ROW 1, Email Volada, Número Volada -->
-
-                    <!-- ROW 2, Facebook Volada, Twitter Volada, Instagram Volada -->
-                    <div class="u-row-container" style="padding: 0px;background-color: transparent">
-                        <div class="u-row"
-                            style="Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;">
-                            <div
-                                style="border-collapse: collapse;display: table;width: 100%;height: 100%;background-color: transparent;">
-
-                                <!-- FACEBOOK -->
-                                <div class="u-col u-col-33p33"
-                                    style="max-width: 320px;min-width: 200px;display: table-cell;vertical-align: top;">
-                                    <div
-                                        style="background-color: #3e4349;height: 100%;width: 100% !important;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;">
-
-                                        <div
-                                            style="height: 100%; padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;">
-
-                                            <table style="font-family:'Lato',sans-serif;" role="presentation"
-                                                cellpadding="0" cellspacing="0" width="100%" border="0">
-                                                <tbody>
-                                                    <tr>
-                                                        <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:'Lato',sans-serif;"
-                                                            align="left">
-
-                                                            <div class="menu" style="text-align:center">
-
-                                                                <img class="filter-white"
-                                                                    src="https://firebasestorage.googleapis.com/v0/b/volada-fire-edd42.appspot.com/o/correos%2Ffacebook-f.svg?alt=media&token=cdce4ecc-105d-4246-9071-97d35164b7e9"
-                                                                    width="12" height="12" alt="" title="">
-
-                                                                <span
-                                                                    style="padding:5px 15px;display:inline-block;color:#ffffff;font-family:arial,helvetica,sans-serif;font-size:14px">
-                                                                    Grupo volada
-                                                                </span>
-
-                                                            </div>
-
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <!-- END FACEBOOK -->
-
-                                <!-- TWITTER -->
-                                <div class="u-col u-col-33p33"
-                                    style="max-width: 320px;min-width: 200px;display: table-cell;vertical-align: top;">
-                                    <div
-                                        style="background-color: #3e4349;height: 100%;width: 100% !important;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;">
-
-                                        <div
-                                            style="height: 100%; padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;">
-
-                                            <table style="font-family:'Lato',sans-serif;" role="presentation"
-                                                cellpadding="0" cellspacing="0" width="100%" border="0">
-                                                <tbody>
-                                                    <tr>
-                                                        <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:'Lato',sans-serif;"
-                                                            align="left">
-
-                                                            <div class="menu" style="text-align:center">
-
-                                                                <img class="filter-white"
-                                                                    src="https://firebasestorage.googleapis.com/v0/b/volada-fire-edd42.appspot.com/o/correos%2Finstagram.svg?alt=media&token=d41806e7-9e10-43d3-ba5b-0881405d9ffa"
-                                                                    width="12" height="12" alt="" title="">
-
-                                                                <span
-                                                                    style="padding:5px 15px;display:inline-block;color:#ffffff;font-family:arial,helvetica,sans-serif;font-size:14px">
-                                                                    Grupo volada
-                                                                </span>
-
-                                                            </div>
-
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <!-- END TWITTER -->
-
-                                <!-- INSTAGRAM -->
-                                <div class="u-col u-col-33p33"
-                                    style="max-width: 320px;min-width: 200px;display: table-cell;vertical-align: top;">
-                                    <div
-                                        style="background-color: #3e4349;height: 100%;width: 100% !important;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;">
-
-                                        <div
-                                            style="height: 100%; padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;">
-
-                                            <table style="font-family:'Lato',sans-serif;" role="presentation"
-                                                cellpadding="0" cellspacing="0" width="100%" border="0">
-                                                <tbody>
-                                                    <tr>
-                                                        <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:'Lato',sans-serif;"
-                                                            align="left">
-
-                                                            <div class="menu" style="text-align:center">
-
-                                                                <img class="filter-white"
-                                                                    src="https://firebasestorage.googleapis.com/v0/b/volada-fire-edd42.appspot.com/o/correos%2Ftwitter.svg?alt=media&token=5ccab4cd-bb2c-43d0-abb3-2b401389ff54"
-                                                                    width="12" height="12" alt="" title="">
-
-                                                                <span
-                                                                    style="padding:5px 15px;display:inline-block;color:#ffffff;font-family:arial,helvetica,sans-serif;font-size:14px">
-                                                                    VoladaMx
-                                                                </span>
-
-                                                            </div>
-
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
 
 
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <!-- END INSTAGRAM -->
-
-                            </div>
-                        </div>
-                    </div>
-                    <!-- END ROW 2, Facebook Volada, Twitter Volada, Instagram Volada -->
 
                     <!-- ESPACIO -->
                     <div class="u-row-container" style="padding: 0px;background-color: #cdd4da">
@@ -646,7 +819,40 @@
 
                                 <div class="u-col u-col-100"
                                     style="max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;">
-                                    <div style="background-color: #3e4349;height: 100%;width: 100% !important;">
+                                    <div style="background-color: #ffffff;height: 100%;width: 100% !important;">
+
+                                        <div
+                                            style="height: 100%; padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;">
+
+                                            <table style="font-family:'Lato',sans-serif;" role="presentation"
+                                                cellpadding="0" cellspacing="0" width="100%" border="0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td style="overflow-wrap:break-word;word-break:break-word;padding:15px;font-family:'Lato',sans-serif;"
+                                                            align="left">
+
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="u-row-container" style="padding: 0px;background-color: #cdd4da">
+                        <div class="u-row"
+                            style="Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #cdd4da;">
+                            <div
+                                style="border-collapse: collapse;display: table;width: 100%;height: 100%;background-color: transparent;">
+
+                                <div class="u-col u-col-100"
+                                    style="max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;">
+                                    <div style="background-color: #ffffff;height: 100%;width: 100% !important;">
 
                                         <div
                                             style="height: 100%; padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;">
