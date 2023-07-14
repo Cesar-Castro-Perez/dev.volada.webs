@@ -106,10 +106,9 @@
             border-top: 0.5px solid #bbb;
         }
 
-        li::marker {
+        /* li::marker {
             color: #e67e20;
-            /* content: url("/image/check-green.png"); */
-        }
+        } */
 
         .filter-grey {
             filter: invert(25%) sepia(11%) saturate(381%) hue-rotate(173deg) brightness(98%) contrast(95%);
@@ -329,48 +328,77 @@
                                                                     <tr>
                                                                         <!-- Cantidad de productos -->
                                                                         <td style="width: 10%;">
-                                                                            <span
-                                                                                style="font-size: 18px;">x{{detalleCarrito[i].cantidad}}</span>
+                                                                            <span style="font-size: 18px;">x1</span>
                                                                         </td>
-                                                                        <td style="width: 70%;">
-                                                                            <!-- Nombre del producto -->
-                                                                            <span style="font-size: 18px;">
-                                                                                {{nombreProducto}}
-                                                                            </span>
-                                                                            <br>
-                                                                            <b
-                                                                                style="color: #303133; font-size: 14px;">Configuraciones</b>
-                                                                            <!-- Lista de configuraciones -->
+                                                                        <!-- Nombre del producto y precio -->
+                                                                        <td style="width: 90%;">
 
-                                                                            <div>
-                                                                                <b
-                                                                                    style="color: #303133; font-size: 14px;">{{detalleCarrito[i].configuraciones[j].nombre}}</b>
-                                                                            </div>
-                                                                            <ul>
-                                                                                <li><span
-                                                                                        style="color: #303133; font-size: 16px; line-height: 25.2px;">
-                                                                                        {{detalleCarrito[i].configuraciones[j].opcion[k].nombre}}
-                                                                                    </span>
-                                                                                </li>
-                                                                            </ul>
+                                                                            <table>
+                                                                                <tr>
+                                                                                    <td style="width: 380px;">
+                                                                                        <span style="font-size: 18px;">
+                                                                                            {{nombreProducto}}
+                                                                                        </span>
+                                                                                    </td>
+                                                                                    <td style="text-align: end;">
+                                                                                        <span
+                                                                                            style="font-size: 18px; text-align: right;">
+                                                                                            $50.00
+                                                                                        </span>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <!-- Lista de configuraciones -->
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <b
+                                                                                            style="color: #303133; font-size: 14px;">Configuraciones</b>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <b
+                                                                                            style="color: #303133; font-size: 14px;">Salsa</b>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <li
+                                                                                            style="margin-left: 15px; color: #e67e20;">
+                                                                                            <span
+                                                                                                style="color: #7e7f83; font-size: 16px; line-height: 25.2px;">
+                                                                                                Valentina
+                                                                                            </span>
 
-                                                                            <!-- Comentarios -->
-                                                                            <b
-                                                                                style="color: #303133; font-size: 14px;">Comentarios</b>
+                                                                                        </li>
+                                                                                    </td>
+                                                                                    <td style="text-align: end;">
+                                                                                        <span
+                                                                                            style="color: #7e7f83; font-size: 14px; line-height: 25.2px;">
+                                                                                            $30
+                                                                                        </span>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <!-- Comentarios -->
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <b
+                                                                                            style="color: #303133; font-size: 14px;">Comentarios</b>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <li
+                                                                                            style="margin-left: 15px; color: #e67e20;">
+                                                                                            <span
+                                                                                                style="color: #7e7f83; font-size: 16px; line-height: 25.2px;">
+                                                                                                Valentina extra
+                                                                                            </span>
 
-                                                                            <div>
-                                                                                <li><span
-                                                                                        style="color: #303133; font-size: 16px; line-height: 25.2px;">
-                                                                                        {{detalleCarrito[i].comentarios}}
-                                                                                    </span>
-                                                                                </li>
-                                                                            </div>
+                                                                                        </li>
+                                                                                    </td>
+                                                                                </tr>
 
-                                                                        </td>
-                                                                        <td style="width: 20%; text-align: end;">
-                                                                            <span style="font-size: 18px;">
-                                                                                ${{detalleCarrito[i].precioUnitario}}
-                                                                            </span>
+                                                                            </table>
                                                                         </td>
                                                                     </tr>
 
